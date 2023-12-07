@@ -35,7 +35,11 @@ func main() {
 		panic("informe o arquivo de entrada e de saída")
 	}
 	caminhoOrigem := args[0]
-	caminhoDestino := strings.TrimPrefix(args[1], "./")
+	caminhoDestino := args[1]
+	ordenacao := ""
+	if len(args) > 2 {
+		ordenacao = args[2]
+	}
 
 	arquivoOrigem, err := os.Open(caminhoOrigem)
 	if err != nil {
@@ -76,8 +80,10 @@ func main() {
 	}
 
 	sort.Sort(porNome(pessoas))
-
-	arquivoDestino, err := os.Create("por-nome-" + caminhoDestino)
+	if ordenacao == "idade" {
+		sort.Sort(porIdade(pessoas))
+	}
+	arquivoDestino, err := os.Create(caminhoDestino)
 	if err != nil {
 		panic(err)
 	}
@@ -87,21 +93,6 @@ func main() {
 	defer writer.Flush()
 
 	headers := []string{"Nome", "Idade", "Pontuação"}
-
-	writer.Write(headers)
-	for _, c := range pessoas {
-		writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
-	}
-
-	sort.Sort(porIdade(pessoas))
-	arquivoDestino, err = os.Create("por-idade-" + caminhoDestino)
-	if err != nil {
-		panic(err)
-	}
-	defer arquivoDestino.Close()
-
-	writer = csv.NewWriter(arquivoDestino)
-	defer writer.Flush()
 
 	writer.Write(headers)
 	for _, c := range pessoas {
