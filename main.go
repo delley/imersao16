@@ -35,7 +35,7 @@ func main() {
 		panic("informe o arquivo de entrada e de saída")
 	}
 	caminhoOrigem := args[0]
-	caminhoDestino := args[1]
+	caminhoDestino := strings.TrimPrefix(args[1], "./")
 
 	arquivoOrigem, err := os.Open(caminhoOrigem)
 	if err != nil {
@@ -84,7 +84,6 @@ func main() {
 	defer arquivoDestino.Close()
 
 	writer := csv.NewWriter(arquivoDestino)
-	//writer.Comma = ';'
 	defer writer.Flush()
 
 	headers := []string{"Nome", "Idade", "Pontuação"}
@@ -102,7 +101,6 @@ func main() {
 	defer arquivoDestino.Close()
 
 	writer = csv.NewWriter(arquivoDestino)
-	//writer.Comma = ';'
 	defer writer.Flush()
 
 	writer.Write(headers)
