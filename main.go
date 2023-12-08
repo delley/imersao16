@@ -17,15 +17,19 @@ type Pessoa struct {
 
 type porNome []Pessoa
 
-func (n porNome) Len() int           { return len(n) }
-func (n porNome) Less(i, j int) bool { return n[i].Nome < n[j].Nome }
-func (n porNome) Swap(i, j int)      { n[i], n[j] = n[j], n[i] }
+func (n porNome) Len() int {
+	return len(n)
+}
 
-type porIdade []Pessoa
+func (n porNome) Less(i, j int) bool {
+	tki := fmt.Sprintf("%s%d", n[i].Nome, n[i].Idade)
+	tkj := fmt.Sprintf("%s%d", n[j].Nome, n[j].Idade)
+	return tki < tkj
+}
 
-func (a porIdade) Len() int           { return len(a) }
-func (a porIdade) Less(i, j int) bool { return a[i].Idade < a[j].Idade }
-func (a porIdade) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (n porNome) Swap(i, j int) {
+	n[i], n[j] = n[j], n[i]
+}
 
 func main() {
 
@@ -36,10 +40,6 @@ func main() {
 	}
 	caminhoOrigem := args[0]
 	caminhoDestino := args[1]
-	ordenacao := ""
-	if len(args) > 2 {
-		ordenacao = args[2]
-	}
 
 	arquivoOrigem, err := os.Open(caminhoOrigem)
 	if err != nil {
@@ -80,9 +80,7 @@ func main() {
 	}
 
 	sort.Sort(porNome(pessoas))
-	if ordenacao == "idade" {
-		sort.Sort(porIdade(pessoas))
-	}
+
 	arquivoDestino, err := os.Create(caminhoDestino)
 	if err != nil {
 		panic(err)
