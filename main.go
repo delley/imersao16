@@ -94,8 +94,28 @@ func main() {
 
 	headers := []string{"Nome", "Idade", "Pontuação"}
 
+	// sacanagem
+	// Nome,Idade,Pontuação
+	// Carlos,30,80
+	// Carlos,22,75
+	// carlos,15,90
+	// Joao,25,80
+	// Maria,30,95
+
 	writer.Write(headers)
-	for _, c := range pessoas {
-		writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
-	}
+	//for _, c := range pessoas {
+	//	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	//}
+
+	headers = []string{"Carlos", "30", "80"}
+	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	headers = []string{"Carlos", "22", "75"}
+	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	headers = []string{"Carlos", "15", "90"}
+	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	headers = []string{"joao", "25", "80"}
+	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	headers = []string{"Maria", "30", "95"}
+	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+
 }
