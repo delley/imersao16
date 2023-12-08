@@ -18,7 +18,7 @@ type Pessoa struct {
 type porNome []Pessoa
 
 func (n porNome) Len() int           { return len(n) }
-func (n porNome) Less(i, j int) bool { return strings.ToLower(n[i].Nome) < strings.ToLower(n[j].Nome) }
+func (n porNome) Less(i, j int) bool { return n[i].Nome < n[j].Nome }
 func (n porNome) Swap(i, j int)      { n[i], n[j] = n[j], n[i] }
 
 type porIdade []Pessoa
@@ -94,28 +94,20 @@ func main() {
 
 	headers := []string{"Nome", "Idade", "Pontuação"}
 
-	// sacanagem
-	// Nome,Idade,Pontuação
-	// Carlos,30,80
-	// Carlos,22,75
-	// carlos,15,90
-	// Joao,25,80
-	// Maria,30,95
+	writer.Write(headers)
+	for _, c := range pessoas {
+		writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	}
 
-	writer.Write(headers)
-	//for _, c := range pessoas {
-	//	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
-	//}
-
-	headers = []string{"Carlos", "22", "75"}
-	writer.Write(headers)
-	headers = []string{"carlos", "15", "90"}
-	writer.Write(headers)
-	headers = []string{"Carlos", "30", "80"}
-	writer.Write(headers)
-	headers = []string{"Joao", "25", "80"}
-	writer.Write(headers)
-	headers = []string{"Maria", "30", "95"}
-	writer.Write(headers)
+	// headers = []string{"carlos", "15", "90"}
+	// writer.Write(headers)
+	// headers = []string{"Carlos", "22", "75"}
+	// writer.Write(headers)
+	// headers = []string{"Carlos", "30", "80"}
+	// writer.Write(headers)
+	// headers = []string{"Joao", "25", "80"}
+	// writer.Write(headers)
+	// headers = []string{"Maria", "30", "95"}
+	// writer.Write(headers)
 
 }
