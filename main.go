@@ -107,15 +107,15 @@ func main() {
 	//	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
 	//}
 
-	headers = []string{"Carlos", "30", "80"}
-	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
 	headers = []string{"Carlos", "22", "75"}
-	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
-	headers = []string{"Carlos", "15", "90"}
-	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
-	headers = []string{"joao", "25", "80"}
-	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	writer.Write(headers)
+	headers = []string{"carlos", "15", "90"}
+	writer.Write(headers)
+	headers = []string{"Carlos", "30", "80"}
+	writer.Write(headers)
+	headers = []string{"Joao", "25", "80"}
+	writer.Write(headers)
 	headers = []string{"Maria", "30", "95"}
-	writer.Write([]string{c.Nome, strconv.Itoa(c.Idade), strconv.Itoa(c.Potuacao)})
+	writer.Write(headers)
 
 }
